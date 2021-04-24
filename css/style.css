@@ -86,13 +86,6 @@ p {
     font-size: 1em;
 }
 
-.firstchar {
-    float: left;
-    font-size: 2.625em;
-    line-height: 1.25em;
-    padding: 0 12px 0 0;
-}
-
 a {
     text-decoration: none;
 }
@@ -103,6 +96,7 @@ a:hover {
 
 .footer-text {
     font-size: 0.8125em;
+    text-transform: uppercase;
 }
 
 /* Coloring
@@ -129,10 +123,6 @@ body, .logo-text, .topmenu-text, .byline {
 code {
     color: #efefeb; 
     background-color: #303020;
-}
-
-.firstchar {
-    color: #bf0f0f;
 }
 
 a {

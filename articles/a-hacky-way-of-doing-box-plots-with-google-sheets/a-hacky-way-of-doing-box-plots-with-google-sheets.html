@@ -31,7 +31,8 @@
 
                 <p>What I love about Google Sheets is that it's easy to use, shareable and portable. With it's simplicity comes a downside - it's not very customizable. I recently tried doing box plots with it and discovered that there wasn't a built-in solution for them.</p>
                 <p>One of the most common ways to emulate box plots in Google Sheets is by using a candlestick chart. The downside is that you're omitting one of the most important values, the median. Another hacky way is to use a stacked bar chart. But it's nowhere near the intuitive look of a real box plot.</p></p>
-                <p>Going through numerous Google searches didn't reveal any good alternatives. At first I thought about using Google Apps Script, but then found a hacky way of doing it inside the spreadsheet.</p> <p>With line charts!</p>
+                <p>Going through numerous Google searches didn't reveal any good alternatives. At first I thought about using Google Apps Script, but then found a hacky way of doing it inside the spreadsheet.</p>
+                <p>With line charts!</p>
 
                 <figure>
                     <a href="boxplots.png"><img src="boxplots.png" alt="An image of candlestick chart and stacked bar chart emulating a box plot, and a real box plot"></a>
@@ -51,49 +52,118 @@
 
                 <p>From the image above you can already start piece together how to go about doing your own box plot.</p>
                 <p>We'll use the chart area as sort of a XY-plane and draw a box plot with 5 different lines. For example, line 1 will be a zig-zag pattern starting from <code>(1,1)</code> going all the way to <code>(3,3)</code>. We'll make a table with the x-axis on top row and insert the y-coordinates of the line on the second row. For example, to enter the first point <code>(1,1)</code> we'll enter <code>1</code> to the first row and <code>1</code> to the second row. For the second point <code>(2,1)</code>, we'll add <code>2</code> to the first row and <code>1</code> to the second row.</p>
-                <p>To draw the chart, make a line chart and choose first row as the x-axis and second row as the first series.</p>
-                <pre><code>x-axis      1       1       2       2       3       3
------------------------------------------------------
-Line 1              1       1       2       2       3</code></pre>
+
+                <table>
+                    <tr>
+                        <td>x-axis</td><td>1</td><td>1</td><td>2</td><td>2</td><td>3</td><td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Line 1</td><td></td><td>1</td><td>1</td><td>2</td><td>2</td><td>3</td>
+                    </tr>
+                </table>
+
                 <p>As you can see above, all 5 points of the line are represented in the table. The rest of the lines follow that logic.</p>
-                <pre><code>x-axis      1       1       2       2       3       3
------------------------------------------------------
-Line 1              1       1       2       2       3
-Line 2              5       5       4       4       3
-Line 3              3       3       3       3
-Line 4      3       2       2       1       1
-Line 5      3       4       4       5       5</code></pre>
+                
+                <table>
+                    <tr>
+                        <td>x-axis</td><td>1</td><td>1</td><td>2</td><td>2</td><td>3</td><td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Line 1</td><td></td><td>1</td><td>1</td><td>2</td><td>2</td><td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Line 2</td><td></td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Line 3</td><td></td><td>3</td><td>3</td><td>3</td><td>3</td><td></td>
+                    </tr>
+                    <tr>
+                        <td>Line 4</td><td>3</td><td>2</td><td>2</td><td>1</td><td>1</td><td></td>
+                    </tr>
+                    <tr>
+                        <td>Line 5</td><td>3</td><td>4</td><td>4</td><td>5</td><td>5</td><td></td>
+                    </tr>
+                </table>
+
+                <p>To draw the chart, make a line chart and choose first row as the x-axis and second row as the first series.</p>
                 <p>From here we can expand the functionality.</p>
                 <p>To get the box plot to represent your data set, set the y-axis values as the 5 core values of a box plot, the minimum, the 1st quartile, the median, the 3rd quartile and the maximum.</p>
-                <pre><code>x-axis      1       1       2       2       3       3
------------------------------------------------------
-Line 1              min     min     1st     1st     median
-Line 2              max     max     3rd     3rd     median
-Line 3              median  median  median  median
-Line 4      median  1st     1st     min     min
-Line 5      median  3rd     3rd     max     max</code></pre>
-                <p>If you wanted to do variable width (width of a box plot depends on it's sample size) then you would adjust the x-axis to depend on data set size.</p>
-                <pre><code>x-axis      0       0       count/2 count/2 count   count
------------------------------------------------------
-Line 1              min     min     1st     1st     median
-Line 2              max     max     3rd     3rd     median
-Line 3              median  median  median  median
-Line 4      median  1st     1st     min     min
-Line 5      median  3rd     3rd     max     max</code></pre>
+
+                <table>
+                    <tr>
+                        <td>x-axis</td><td>1</td><td>1</td><td>2</td><td>2</td><td>3</td><td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Line 1</td><td></td><td>min</td><td>min</td><td>1st</td><td>1st</td><td>median</td>
+                    </tr>
+                    <tr>
+                        <td>Line 2</td><td></td><td>max</td><td>max</td><td>3rd</td><td>3rd</td><td>median</td>
+                    </tr>
+                    <tr>
+                        <td>Line 3</td><td></td><td>median</td><td>median</td><td>median</td><td>median</td><td></td>
+                    </tr>
+                    <tr>
+                        <td>Line 4</td><td>median</td><td>1st</td><td>1st</td><td>min</td><td>min</td><td></td>
+                    </tr>
+                    <tr>
+                        <td>Line 5</td><td>median</td><td>3rd</td><td>3rd</td><td>max</td><td>max</td><td></td>
+                    </tr>
+                </table>
+
+                <p>If you wanted to do variable width (width of a box plot depends on it's sample size) then you would adjust the x-axis to depend on the data set size.</p>
+
+                <table>
+                    <tr>
+                        <td>x-axis</td><td>0</td><td>0</td><td>count / 2</td><td>count / 2</td><td>count</td><td>count</td>
+                    </tr>
+                    <tr>
+                        <td>Line 1</td><td></td><td>min</td><td>min</td><td>1st</td><td>1st</td><td>median</td>
+                    </tr>
+                    <tr>
+                        <td>Line 2</td><td></td><td>max</td><td>max</td><td>3rd</td><td>3rd</td><td>median</td>
+                    </tr>
+                    <tr>
+                        <td>Line 3</td><td></td><td>median</td><td>median</td><td>median</td><td>median</td><td></td>
+                    </tr>
+                    <tr>
+                        <td>Line 4</td><td>median</td><td>1st</td><td>1st</td><td>min</td><td>min</td><td></td>
+                    </tr>
+                    <tr>
+                        <td>Line 5</td><td>median</td><td>3rd</td><td>3rd</td><td>max</td><td>max</td><td></td>
+                    </tr>
+                </table>
+
                 <p>Outliers (for example any values farther than 1.5 x IQR of 1st and 3rd quartiles) are done by calculating lower and upper limit, then filtering any values that don't fit inside that range. Your new whiskers are your calculated lower and upper limits. Outliers are plotted in the chart by making another row and setting that value as a point.</p>
-                <pre><code>x-axis      0       0       count/2 count/2 count   count
------------------------------------------------------
-Line 1              min     min     lower   lower   median
-Line 2              max     max     upper   upper   median
-Line 3              median  median  median  median
-Line 4      median  lower   lower   min     min
-Line 5      median  upper   upper   max     max
-Outlier 1                   outlier1</code></pre>
+
+                <table>
+                    <tr>
+                        <td>x-axis</td><td>0</td><td>0</td><td>count / 2</td><td>count / 2</td><td>count</td><td>count</td>
+                    </tr>
+                    <tr>
+                        <td>Line 1</td><td></td><td>lower</td><td>lower</td><td>1st</td><td>1st</td><td>median</td>
+                    </tr>
+                    <tr>
+                        <td>Line 2</td><td></td><td>upper</td><td>upper</td><td>3rd</td><td>3rd</td><td>median</td>
+                    </tr>
+                    <tr>
+                        <td>Line 3</td><td></td><td>median</td><td>median</td><td>median</td><td>median</td><td></td>
+                    </tr>
+                    <tr>
+                        <td>Line 4</td><td>median</td><td>1st</td><td>1st</td><td>lower</td><td>lower</td><td></td>
+                    </tr>
+                    <tr>
+                        <td>Line 5</td><td>median</td><td>3rd</td><td>3rd</td><td>upper</td><td>upper</td><td></td>
+                    </tr>
+                    <tr>
+                        <td>Outlier 1</td><td></td><td></td><td>outlier 1</td><td></td><td></td><td></td>
+                    </tr>
+                </table>
+
                 <p>The end result is quite pleasing to the eye and much better than a candlestick chart!</p>                
                 <figure>
-                    <a href="the_result.png"><img src="the_result.png" alt="The result of hard work."></a>
+                    <a href="the_result.png"><img src="the_result.png" alt="An image of box plots in Google sheets made with above instructions."></a>
                     <figcaption>
-                        A box plot in Google Sheets with variable width and outliers.
+                        Box plots in Google Sheets with variable widths and outliers.
                     </figcaption>
                 </figure>
 

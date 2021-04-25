@@ -183,11 +183,21 @@ img {
     max-width: 100%;
 }
 
+table {
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid #303020;
+    border-collapse: collapse;
+    padding: 0 0.625em;
+}
+
 blockquote {
     display: block;
     margin: 0 1em;
     border-left: .375em solid #bf0f0f;
-    padding: .0.625em;
+    padding: 0.625em;
 }
 
 pre code {

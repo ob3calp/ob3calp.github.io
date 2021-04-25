@@ -1,0 +1,113 @@
+<!-- Created by tixxon -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>A (hacky) way of doing box plots with Google Sheets | tixxon</title>
+        <meta name="description" content="There isn't a built-in solution for box plots in Google Sheets, but here's a hacky way of doing them.">
+        <meta name="author" content="tixxon">
+        <meta name="robots" content="index, follow">
+        <link rel="stylesheet" href="/css/style.css" type="text/css">
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <a class="logo-text" href="/">TIXXON</a>
+            </div><nav class="topmenu">
+                <ul>
+                    <li><a href="/articles/" class="topmenu-text">Texts</a></li>
+                    <li><a href="/repos/" class="topmenu-text">Repos</a></li>
+                </ul>
+            </nav>
+
+        </header>
+        <main>
+            <article>
+
+                <h1>A (hacky) way of doing box plots with Google Sheets</h1>
+
+                <div class="byline"><time datetime="2020-05-16">16. May 2020</time></div>
+
+                <p>What I love about Google Sheets is that it's easy to use, shareable and portable. With it's simplicity comes a downside - it's not very customizable. I recently tried doing box plots with it and discovered that there wasn't a built-in solution for them.</p>
+                <p>One of the most common ways to emulate box plots in Google Sheets is by using a candlestick chart. The downside is that you're omitting one of the most important values, the median. Another hacky way is to use a stacked bar chart. But it's nowhere near the intuitive look of a real box plot.</p></p>
+                <p>Going through numerous Google searches didn't reveal any good alternatives. At first I thought about using Google Apps Script, but then found a hacky way of doing it inside the spreadsheet.</p> <p>With line charts!</p>
+
+                <figure>
+                    <a href="boxplots.png"><img src="boxplots.png" alt="An image of candlestick chart and stacked bar chart emulating a box plot, and a real box plot"></a>
+                    <figcaption>
+                        A candlestick chart, a stacked bar chart and a hacky box plot. The hacky thing is so much better.
+                    </figcaption>
+                </figure>
+
+                <p>How was the box plot on the right done? Sometimes one image is more descriptive than a bunch of words:</p>
+
+                <figure>
+                    <a href="boxplot_exploded.png"><img src="boxplot_exploded.png" alt="An exploded view a of a box plot constructed with line charts"></a>
+                    <figcaption>
+                        A box plot constructed of 5 different lines.
+                    </figcaption>
+                </figure>
+
+                <p>From the image above you can already start piece together how to go about doing your own box plot.</p>
+                <p>We'll use the chart area as sort of a XY-plane and draw a box plot with 5 different lines. For example, line 1 will be a zig-zag pattern starting from <code>(1,1)</code> going all the way to <code>(3,3)</code>. We'll make a table with the x-axis on top row and insert the y-coordinates of the line on the second row. For example, to enter the first point <code>(1,1)</code> we'll enter <code>1</code> to the first row and <code>1</code> to the second row. For the second point <code>(2,1)</code>, we'll add <code>2</code> to the first row and <code>1</code> to the second row.</p>
+                <p>To draw the chart, make a line chart and choose first row as the x-axis and second row as the first series.</p>
+                <pre><code>x-axis      1       1       2       2       3       3
+-----------------------------------------------------
+Line 1              1       1       2       2       3</code></pre>
+                <p>As you can see above, all 5 points of the line are represented in the table. The rest of the lines follow that logic.</p>
+                <pre><code>x-axis      1       1       2       2       3       3
+-----------------------------------------------------
+Line 1              1       1       2       2       3
+Line 2              5       5       4       4       3
+Line 3              3       3       3       3
+Line 4      3       2       2       1       1
+Line 5      3       4       4       5       5</code></pre>
+                <p>From here we can expand the functionality.</p>
+                <p>To get the box plot to represent your data set, set the y-axis values as the 5 core values of a box plot, the minimum, the 1st quartile, the median, the 3rd quartile and the maximum.</p>
+                <pre><code>x-axis      1       1       2       2       3       3
+-----------------------------------------------------
+Line 1              min     min     1st     1st     median
+Line 2              max     max     3rd     3rd     median
+Line 3              median  median  median  median
+Line 4      median  1st     1st     min     min
+Line 5      median  3rd     3rd     max     max</code></pre>
+                <p>If you wanted to do variable width (width of a box plot depends on it's sample size) then you would adjust the x-axis to depend on data set size.</p>
+                <pre><code>x-axis      0       0       count/2 count/2 count   count
+-----------------------------------------------------
+Line 1              min     min     1st     1st     median
+Line 2              max     max     3rd     3rd     median
+Line 3              median  median  median  median
+Line 4      median  1st     1st     min     min
+Line 5      median  3rd     3rd     max     max</code></pre>
+                <p>Outliers (for example any values farther than 1.5 x IQR of 1st and 3rd quartiles) are done by calculating lower and upper limit, then filtering any values that don't fit inside that range. Your new whiskers are your calculated lower and upper limits. Outliers are plotted in the chart by making another row and setting that value as a point.</p>
+                <pre><code>x-axis      0       0       count/2 count/2 count   count
+-----------------------------------------------------
+Line 1              min     min     lower   lower   median
+Line 2              max     max     upper   upper   median
+Line 3              median  median  median  median
+Line 4      median  lower   lower   min     min
+Line 5      median  upper   upper   max     max
+Outlier 1                   outlier1</code></pre>
+                <p>The end result is quite pleasing to the eye and much better than a candlestick chart!</p>                
+                <figure>
+                    <a href="the_result.png"><img src="the_result.png" alt="The result of hard work."></a>
+                    <figcaption>
+                        A box plot in Google Sheets with variable width and outliers.
+                    </figcaption>
+                </figure>
+
+                <p>I've linked some spreadsheet examples below.</p>
+
+                <a href="https://docs.google.com/spreadsheets/d/1N6jsvP9lAbFMXh76lomvz0TiSvqTZWc2u9P5DvHEC3g/edit#gid=1894140740">Vanilla box plot</a><br>
+                <a href="https://docs.google.com/spreadsheets/d/1N6jsvP9lAbFMXh76lomvz0TiSvqTZWc2u9P5DvHEC3g/edit#gid=1261890658">Box plot with outliers</a><br>
+                <a href="https://docs.google.com/spreadsheets/d/1N6jsvP9lAbFMXh76lomvz0TiSvqTZWc2u9P5DvHEC3g/edit#gid=784619434">Box plot with outliers and variable widths</a>
+
+            </article>
+        </main>
+        <footer>
+            <hr>
+            <div class="footer-text">&copy;2021 tixxon</div>
+        </footer>
+    </body>
+</html>

@@ -27,12 +27,21 @@ body {
 /* Typography
 --------------------------------*/
 
+.lede, h1, h2, h3, h4, p, blockquote, .link-list {
+    font-family: Georgia, Times, "Times New Roman", serif;
+}
+
 .logo-text {
     font-size: 2.625em;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: .2em;
     text-decoration: none;
+    text-align: left;
+}
+
+.link-list a {
+    font-size: 1.25em;
 }
 
 .logo-text:hover {
@@ -44,14 +53,11 @@ body {
     text-transform: uppercase;
     letter-spacing: .1em;
     text-decoration: underline;
+    text-align: right;
 }
 
 .topmenu-text:hover {
     text-decoration: underline;
-}
-
-.lede, h1, h2, h3, h4, p, blockquote {
-    font-family: Georgia, Times, "Times New Roman", serif;
 }
 
 h1 {
@@ -94,9 +100,14 @@ a:hover {
     text-decoration: underline;
 }
 
+figcaption {
+    font-size: 0.8125em;
+}
+
 .footer-text {
     font-size: 0.8125em;
     text-transform: uppercase;
+    text-align: center;
 }
 
 /* Coloring
@@ -144,13 +155,11 @@ header, article, p, footer, .byline {
 .logo {
     display: inline-block;
     min-width: 50%;
-    text-align: left;
 }
 
 .topmenu {
     display: inline-block;
     min-width: 50%;
-    text-align: right;
 }
 
 .topmenu li {
@@ -170,12 +179,8 @@ figure, video {
     margin: auto;
 }
 
-figcaption {
-    font-size: 0.8125em;
-}
-
 img {
-    width: 100%;
+    max-width: 100%;
 }
 
 blockquote {
@@ -190,8 +195,4 @@ pre code {
     margin: 0 1em;
     padding: 1em;
     overflow: auto;
-}
-
-.footer-text {
-    text-align: center;
 }

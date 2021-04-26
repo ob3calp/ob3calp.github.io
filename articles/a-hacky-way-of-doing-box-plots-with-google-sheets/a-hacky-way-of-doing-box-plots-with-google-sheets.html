@@ -1,19 +1,19 @@
-<!-- Created by tixxon -->
+<!-- Created by ob3calp -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>A (hacky) way of doing box plots with Google Sheets | tixxon</title>
+        <title>A (hacky) way of doing box plots with Google Sheets | ob3calp</title>
         <meta name="description" content="There isn't a built-in solution for box plots in Google Sheets, but here's a hacky way of doing them.">
-        <meta name="author" content="tixxon">
+        <meta name="author" content="ob3calp">
         <meta name="robots" content="index, follow">
         <link rel="stylesheet" href="/css/style.css" type="text/css">
     </head>
     <body>
         <header>
             <div class="logo">
-                <a class="logo-text" href="/">TIXXON</a>
+                <a class="logo-text" href="/">ob3calp</a>
             </div><nav class="topmenu">
                 <ul>
                     <li><a href="/articles/" class="topmenu-text">Texts</a></li>
@@ -29,15 +29,15 @@
 
                 <div class="byline"><time datetime="2020-05-16">16. May 2020</time></div>
 
-                <p>What I love about Google Sheets is that it's easy to use, shareable and portable. With it's simplicity comes a downside - it's not very customizable. I recently tried doing box plots with it and discovered that there wasn't a built-in solution for them.</p>
+                <p>What I love about Google Sheets is that it's easy to use, shareable and portable. With its simplicity comes a downside - it's not very customizable. I recently tried doing box plots with it and discovered that there wasn't a built-in solution for them.</p>
                 <p>One of the most common ways to emulate box plots in Google Sheets is by using a candlestick chart. The downside is that you're omitting one of the most important values, the median. Another hacky way is to use a stacked bar chart. But it's nowhere near the intuitive look of a real box plot.</p></p>
-                <p>Going through numerous Google searches didn't reveal any good alternatives. At first I thought about using Google Apps Script, but then found a hacky way of doing it inside the spreadsheet.</p>
+                <p>Going through numerous Google searches didn't reveal any good alternatives. At first, I thought about using Google Apps Script, but then found a hacky way of doing it inside the spreadsheet.</p>
                 <p>With line charts!</p>
 
                 <figure>
                     <a href="boxplots.png"><img src="boxplots.png" alt="An image of candlestick chart and stacked bar chart emulating a box plot, and a real box plot"></a>
                     <figcaption>
-                        A candlestick chart, a stacked bar chart and a hacky box plot. The hacky thing is so much better.
+                        A candlestick chart, a stacked bar chart, and a hacky box plot. The hacky thing is so much better.
                     </figcaption>
                 </figure>
 
@@ -50,8 +50,8 @@
                     </figcaption>
                 </figure>
 
-                <p>From the image above you can already start piece together how to go about doing your own box plot.</p>
-                <p>We'll use the chart area as sort of a XY-plane and draw a box plot with 5 different lines. For example, line 1 will be a zig-zag pattern starting from <code>(1,1)</code> going all the way to <code>(3,3)</code>. We'll make a table with the x-axis on top row and insert the y-coordinates of the line on the second row. For example, to enter the first point <code>(1,1)</code> we'll enter <code>1</code> to the first row and <code>1</code> to the second row. For the second point <code>(2,1)</code>, we'll add <code>2</code> to the first row and <code>1</code> to the second row.</p>
+                <p>From the image above you can already start to piece together how to go about doing your own box plot.</p>
+                <p>We'll use the chart area as sort of an XY-plane and draw a box plot with 5 different lines. For example, line 1 will be a zig-zag pattern starting from <code>(1,1)</code> going all the way to <code>(3,3)</code>. We'll make a table with the x-axis on the top row and insert the y-coordinates of the line on the second row. For example, to enter the first point <code>(1,1)</code> we'll enter <code>1</code> to the first row and <code>1</code> to the second row. For the second point <code>(2,1)</code>, we'll add <code>2</code> to the first row and <code>1</code> to the second row.</p>
 
                 <table>
                     <tr>
@@ -85,9 +85,9 @@
                     </tr>
                 </table>
 
-                <p>To draw the chart, make a line chart and choose first row as the x-axis and second row as the first series.</p>
+                <p>To draw the chart, make a line chart and choose the first row as the x-axis and the second row as the first series.</p>
                 <p>From here we can expand the functionality.</p>
-                <p>To get the box plot to represent your data set, set the y-axis values as the 5 core values of a box plot, the minimum, the 1st quartile, the median, the 3rd quartile and the maximum.</p>
+                <p>To get the box plot to represent your data set, set the y-axis values as the 5 core values of a box plot, the minimum, the 1st quartile, the median, the 3rd quartile, and the maximum.</p>
 
                 <table>
                     <tr>
@@ -110,7 +110,7 @@
                     </tr>
                 </table>
 
-                <p>If you wanted to do variable width (width of a box plot depends on it's sample size) then you would adjust the x-axis to depend on the data set size.</p>
+                <p>If you wanted to do variable width (width of a box plot depends on its sample size) then you would adjust the x-axis to depend on the data set size.</p>
 
                 <table>
                     <tr>
@@ -177,7 +177,7 @@
         </main>
         <footer>
             <hr>
-            <div class="footer-text">&copy;2021 tixxon</div>
+            <div class="footer-text">&copy;2021 ob3calp</div>
         </footer>
     </body>
 </html>

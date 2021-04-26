@@ -1,4 +1,4 @@
-/* Created by tixxon */
+/* Created by ob3calp */
 
 /* Basic reset
 --------------------------------*/
@@ -104,6 +104,10 @@ figcaption {
     font-size: 0.8125em;
 }
 
+table, th, td {
+    font-size: 0.8125em;
+}
+
 .footer-text {
     font-size: 0.8125em;
     text-transform: uppercase;
@@ -188,6 +192,7 @@ table {
 }
 
 table, th, td {
+    font-size: 0.8125em;
     border: 1px solid #303020;
     border-collapse: collapse;
     padding: 0 0.625em;

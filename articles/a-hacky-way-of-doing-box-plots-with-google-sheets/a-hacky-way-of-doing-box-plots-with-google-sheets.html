@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>A (hacky) way of doing box plots with Google Sheets | ob3calp</title>
-        <meta name="description" content="There isn't a built-in solution for box plots in Google Sheets, but here's a hacky way of doing them.">
+        <meta name="description" content="There isn't a built-in solution for box plots in Google Sheets, but here's a hacky way of doing them with line charts without any scripting.">
         <meta name="author" content="ob3calp">
         <meta name="robots" content="index, follow">
         <link rel="stylesheet" href="/css/style.css" type="text/css">
@@ -16,8 +16,8 @@
                 <a class="logo-text" href="/">ob3calp</a>
             </div><nav class="topmenu">
                 <ul>
-                    <li><a href="/articles/" class="topmenu-text">Texts</a></li>
-                    <li><a href="/repos/" class="topmenu-text">Repos</a></li>
+                    <li><a href="/articles/" class="topmenu-text">Articles</a></li>
+                    <li><a href="/repository/" class="topmenu-text">Repository</a></li>
                 </ul>
             </nav>
 
@@ -51,7 +51,7 @@
                 </figure>
 
                 <p>From the image above you can already start to piece together how to go about doing your own box plot.</p>
-                <p>We'll use the chart area as sort of an XY-plane and draw a box plot with 5 different lines. For example, line 1 will be a zig-zag pattern starting from <code>(1,1)</code> going all the way to <code>(3,3)</code>. We'll make a table with the x-axis on the top row and insert the y-coordinates of the line on the second row. For example, to enter the first point <code>(1,1)</code> we'll enter <code>1</code> to the first row and <code>1</code> to the second row. For the second point <code>(2,1)</code>, we'll add <code>2</code> to the first row and <code>1</code> to the second row.</p>
+                <p>We'll use the chart area as sort of an XY-plane and draw a box plot with 5 different lines. Line 1 will be a zig-zag pattern starting from <code>(1,1)</code> going all the way to <code>(3,3)</code>. We'll make a table with the x-axis on the top row and insert the y-coordinates of the line on the second row. For example, to enter the first point <code>(1,1)</code> we'll enter <code>1</code> to the first row and <code>1</code> to the second row. For the second point <code>(2,1)</code>, we'll add <code>2</code> to the first row and <code>1</code> to the second row.</p>
 
                 <table>
                     <tr>
@@ -110,11 +110,11 @@
                     </tr>
                 </table>
 
-                <p>If you wanted to do variable width (width of a box plot depends on its sample size) then you would adjust the x-axis to depend on the data set size.</p>
+                <p>If you wanted to do variable width (width of a box plot depends on its sample size) then you would adjust the x-axis to depend on the data set size (n).</p>
 
                 <table>
                     <tr>
-                        <td>x-axis</td><td>0</td><td>0</td><td>count / 2</td><td>count / 2</td><td>count</td><td>count</td>
+                        <td>x-axis</td><td>0</td><td>0</td><td>n/2</td><td>n/2</td><td>n</td><td>n</td>
                     </tr>
                     <tr>
                         <td>Line 1</td><td></td><td>min</td><td>min</td><td>1st</td><td>1st</td><td>median</td>
@@ -137,7 +137,7 @@
 
                 <table>
                     <tr>
-                        <td>x-axis</td><td>0</td><td>0</td><td>count / 2</td><td>count / 2</td><td>count</td><td>count</td>
+                        <td>x-axis</td><td>0</td><td>0</td><td>n/2</td><td>n/2</td><td>n</td><td>n</td>
                     </tr>
                     <tr>
                         <td>Line 1</td><td></td><td>lower</td><td>lower</td><td>1st</td><td>1st</td><td>median</td>
@@ -169,9 +169,9 @@
 
                 <p>I've linked some spreadsheet examples below.</p>
 
-                <a href="https://docs.google.com/spreadsheets/d/1N6jsvP9lAbFMXh76lomvz0TiSvqTZWc2u9P5DvHEC3g/edit#gid=1894140740">Vanilla box plot</a><br>
-                <a href="https://docs.google.com/spreadsheets/d/1N6jsvP9lAbFMXh76lomvz0TiSvqTZWc2u9P5DvHEC3g/edit#gid=1261890658">Box plot with outliers</a><br>
-                <a href="https://docs.google.com/spreadsheets/d/1N6jsvP9lAbFMXh76lomvz0TiSvqTZWc2u9P5DvHEC3g/edit#gid=784619434">Box plot with outliers and variable widths</a>
+                <p><a href="https://docs.google.com/spreadsheets/d/1N6jsvP9lAbFMXh76lomvz0TiSvqTZWc2u9P5DvHEC3g/edit#gid=1894140740">Vanilla box plot</a></p>
+                <p><a href="https://docs.google.com/spreadsheets/d/1N6jsvP9lAbFMXh76lomvz0TiSvqTZWc2u9P5DvHEC3g/edit#gid=1261890658">Box plot with outliers</a></p>
+                <p><a href="https://docs.google.com/spreadsheets/d/1N6jsvP9lAbFMXh76lomvz0TiSvqTZWc2u9P5DvHEC3g/edit#gid=784619434">Box plot with outliers and variable widths</a></p>
 
             </article>
         </main>

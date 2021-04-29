@@ -1,2 +1,3 @@
 User-agent: *
-Disallow: /img/
+Allow: /
+Sitemap: http://ob3calp.github.io/sitemap.xml

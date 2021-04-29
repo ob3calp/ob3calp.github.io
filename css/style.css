@@ -18,7 +18,7 @@ html {
 
 body {
     width: 90%;
-    max-width: 640px; /*max-width: 576px;*/
+    max-width: 640px;
     margin: auto;
 
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -27,8 +27,12 @@ body {
 /* Typography
 --------------------------------*/
 
-.lede, h1, h2, h3, h4, p, blockquote, .link-list {
+.lede, h1, h2, h3, h4, p, blockquote, .list {
     font-family: Georgia, Times, "Times New Roman", serif;
+}
+
+table, code {
+    font-family: "SF Mono", SFMono-Regular, ui-monospace, "DejaVu Sans Mono", Menlo, Consolas, monospace;
 }
 
 .logo-text {
@@ -40,7 +44,7 @@ body {
     text-align: left;
 }
 
-.link-list a {
+.list-header {
     font-size: 1.25em;
 }
 
@@ -104,7 +108,11 @@ figcaption {
     font-size: 0.8125em;
 }
 
-table, th, td {
+table {
+    font-size: 0.8125em;
+}
+
+code {
     font-size: 0.8125em;
 }
 
@@ -119,7 +127,7 @@ table, th, td {
 
 body, .logo-text, .topmenu-text, .byline {
     color: #303020;
-    background-color: #efefeb; /*background-color: #efefeb;*/
+    background-color: #efefeb;
 }
 
 .byline time, figcaption, blockquote {
@@ -128,7 +136,6 @@ body, .logo-text, .topmenu-text, .byline {
 
 .topmenu-text {
     text-decoration-color: #bf0f0f;
-
 }
 
 .topmenu-text:hover, .logo-text:hover {
@@ -141,7 +148,6 @@ code {
 }
 
 a {
-    /*color: #1f5fbf;*/
     color: #bf0f0f;
 }
 
@@ -152,23 +158,13 @@ a:hover {
 /* Layout
 --------------------------------*/
 
-header, article, p, footer, .byline {
+header, article, p, footer, .logo, .topmenu, .list, .byline {
     margin: 1em 0;
-}
-
-.logo {
-    display: inline-block;
-    min-width: 50%;
-}
-
-.topmenu {
-    display: inline-block;
-    min-width: 50%;
 }
 
 .topmenu li {
     display: inline-block;
-    margin: 0 0 0 1em;
+    margin: 0 1em 0 0;
 }
 
 hr {
@@ -192,7 +188,6 @@ table {
 }
 
 table, th, td {
-    font-size: 0.8125em;
     border: 1px solid #303020;
     border-collapse: collapse;
     padding: 0 0.625em;

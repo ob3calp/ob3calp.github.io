@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>A (hacky) way of doing box plots with Google Sheets | ob3calp</title>
-        <meta name="description" content="There isn't a built-in solution for box plots in Google Sheets, but here's a hacky way of doing them with line charts without any scripting.">
+        <meta name="description" content="There isn't a built-in solution for box plots in Google Sheets, but there's a hacky way of doing them using line charts without any scripting.">
         <meta name="author" content="ob3calp">
         <meta name="robots" content="index, follow">
         <link rel="stylesheet" href="/css/style.css" type="text/css">
@@ -13,11 +13,12 @@
     <body>
         <header>
             <div class="logo">
-                <a class="logo-text" href="/">ob3calp</a>
-            </div><nav class="topmenu">
+                <a href="/">ob3calp</a>
+            </div>
+            <nav class="topmenu">
                 <ul>
-                    <li><a href="/articles/" class="topmenu-text">Articles</a></li>
-                    <li><a href="/repository/" class="topmenu-text">Repository</a></li>
+                    <li><a href="/articles/">Articles</a></li>
+                    <li><a href="/repository/">Repository</a></li>
                 </ul>
             </nav>
 
@@ -32,7 +33,7 @@
                 <p>What I love about Google Sheets is that it's easy to use, shareable and portable. With its simplicity comes a downside - it's not very customizable. I recently tried doing box plots with it and discovered that there wasn't a built-in solution for them.</p>
                 <p>One of the most common ways to emulate box plots in Google Sheets is by using a candlestick chart. The downside is that you're omitting one of the most important values, the median. Another hacky way is to use a stacked bar chart. But it's nowhere near the intuitive look of a real box plot.</p></p>
                 <p>Going through numerous Google searches didn't reveal any good alternatives. At first, I thought about using Google Apps Script, but then found a hacky way of doing it inside the spreadsheet.</p>
-                <p>With line charts!</p>
+                <p>Using line charts!</p>
 
                 <figure>
                     <a href="boxplots.png"><img src="boxplots.png" alt="An image of candlestick chart and stacked bar chart emulating a box plot, and a real box plot"></a>
@@ -44,7 +45,7 @@
                 <p>How was the box plot on the right done? Sometimes one image is more descriptive than a bunch of words:</p>
 
                 <figure>
-                    <a href="boxplot_exploded.png"><img src="boxplot_exploded.png" alt="An exploded view a of a box plot constructed with line charts"></a>
+                    <a href="boxplot_exploded.png"><img src="boxplot_exploded.png" alt="An exploded view a of a box plot constructed using line charts"></a>
                     <figcaption>
                         A box plot constructed of 5 different lines.
                     </figcaption>
@@ -177,7 +178,7 @@
         </main>
         <footer>
             <hr>
-            <div class="footer-text">&copy;2021 ob3calp</div>
+            &copy;2021 ob3calp
         </footer>
     </body>
 </html>

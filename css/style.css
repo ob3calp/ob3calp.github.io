@@ -20,14 +20,18 @@ body {
     width: 90%;
     max-width: 640px;
     margin: auto;
-
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
+    }
 
 /* Typography
 --------------------------------*/
 
-.lede, h1, h2, h3, h4, p, blockquote, .list {
+/* Fonts */
+
+figcaption, footer, .logo, .topmenu, .byline {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+h1, h2, h3, h4, p, blockquote, .lede, .list {
     font-family: Georgia, Times, "Times New Roman", serif;
 }
 
@@ -35,7 +39,17 @@ table, code {
     font-family: "SF Mono", SFMono-Regular, ui-monospace, "DejaVu Sans Mono", Menlo, Consolas, monospace;
 }
 
-.logo-text {
+figcaption {
+    font-size: 0.8125em;
+}
+
+footer {
+    font-size: 0.8125em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.logo a {
     font-size: 2.625em;
     font-weight: bold;
     text-transform: uppercase;
@@ -44,15 +58,11 @@ table, code {
     text-align: left;
 }
 
-.list-header {
-    font-size: 1.25em;
-}
-
-.logo-text:hover {
+.logo a:hover {
     text-decoration: none;
 }
 
-.topmenu-text {
+.topmenu a {
     font-size: 1.25em;
     text-transform: uppercase;
     letter-spacing: .1em;
@@ -60,8 +70,14 @@ table, code {
     text-align: right;
 }
 
-.topmenu-text:hover {
+.topmenu a:hover {
     text-decoration: underline;
+}
+
+.byline {
+    font-size: 0.8125em;
+    text-transform: uppercase;
+    text-align: center;
 }
 
 h1 {
@@ -81,31 +97,13 @@ h4 {
     font-size: 1em;
 }
 
-.byline {
-    font-size: 0.8125em;
-    text-transform: uppercase;
-    text-align: center;
+p {
+    font-size: 1em;
 }
 
 .lede {
     font-size: 1.25em;
     text-align: center;
-}
-
-p {
-    font-size: 1em;
-}
-
-a {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-figcaption {
-    font-size: 0.8125em;
 }
 
 table {
@@ -116,30 +114,32 @@ code {
     font-size: 0.8125em;
 }
 
-.footer-text {
-    font-size: 0.8125em;
-    text-transform: uppercase;
-    text-align: center;
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 /* Coloring
 --------------------------------*/
 
-body, .logo-text, .topmenu-text, .byline {
+body, .logo a, .topmenu a, .byline {
     color: #303020;
     background-color: #efefeb;
 }
 
-.byline time, figcaption, blockquote {
-    color: #7f7f77;
+.logo a:hover, .topmenu a:hover {
+    color: #df3f3f;
 }
 
-.topmenu-text {
+.topmenu a {
     text-decoration-color: #bf0f0f;
 }
 
-.topmenu-text:hover, .logo-text:hover {
-    color: #df3f3f;
+.byline time, figcaption, blockquote {
+    color: #7f7f77;
 }
 
 code {
@@ -158,7 +158,7 @@ a:hover {
 /* Layout
 --------------------------------*/
 
-header, article, p, footer, .logo, .topmenu, .list, .byline {
+header, article, p, footer, .logo, .topmenu, .byline, .list {
     margin: 1em 0;
 }
 
@@ -183,8 +183,11 @@ img {
     max-width: 100%;
 }
 
-table {
-    width: 100%;
+blockquote {
+    display: block;
+    margin: 0 1em;
+    border-left: .375em solid #bf0f0f;
+    padding: 0.625em;
 }
 
 table, th, td {
@@ -193,11 +196,8 @@ table, th, td {
     padding: 0 0.625em;
 }
 
-blockquote {
-    display: block;
-    margin: 0 1em;
-    border-left: .375em solid #bf0f0f;
-    padding: 0.625em;
+table {
+    width: 100%;
 }
 
 pre code {
